@@ -3,7 +3,7 @@ const fetchText = async (url) => {
     const response = await fetch(url);
     return await response.text();
 }
-const csvUrl = 'assets/data/data.csv';
+const csvUrl = 'assets/data/data-1.csv';
 
 // --------------------------------------------------------------------
 let markers;
@@ -41,7 +41,7 @@ fetchText(csvUrl).then(text => {
 
     for (i = 0; i < pois.length; i++) {
 
-        let latlng = [pois[i].latitude, pois[i].longitude];
+        let latlng = [pois[i].longitude, pois[i].latitude];
         let feature = {
             "type": "Feature",
             "properties": {
