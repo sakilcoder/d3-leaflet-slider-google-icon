@@ -93,9 +93,9 @@ var updateMap = function (variable) {
 
 }
 
-L.easyButton('<i class="material-icons" style="font-size:18px; margin-top: 5rc px">home</i>', function () {
+L.easyButton('<i class="material-icons" style="font-size:18px; margin-top: 5px">home</i>', function () {
     if (markers) {
-        map.fitBounds(markers.getBounds());
+        map.flyToBounds(markers.getBounds());
     }
 }).addTo(map);
 
