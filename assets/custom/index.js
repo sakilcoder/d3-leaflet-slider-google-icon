@@ -3,14 +3,14 @@ const fetchText = async (url) => {
     const response = await fetch(url);
     return await response.text();
 }
-const csvUrl = 'assets/data/data-1.csv';
+const csvUrl = 'assets/data/data.csv';
 
 // --------------------------------------------------------------------
 let markers;
 var map = L.map('map', {
     center: [0, 51],
     zoom: 16,
-    layers: [OpenStreetMap_Mapnik]
+    layers: [basemapCarto]
 });
 
 map.options.maxZoom = 19;
@@ -25,9 +25,9 @@ titleControl.onAdd = function (map) {
 titleControl.addTo(map);
 
 var baseLayers = {
+    'Carto': basemapCarto,
     'OSM': OpenStreetMap_Mapnik,
     'Dark': darkStamenLayer,
-    'Carto': basemapCarto,
     'Google': googleTerrain,
 };
 L.control.layers(baseLayers).addTo(map);
