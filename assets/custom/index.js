@@ -15,8 +15,18 @@ var map = L.map('map', {
 
 map.options.maxZoom = 19;
 
+titleControl = L.control({ position: 'topright' });
+titleControl.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'map-title');
+    div.innerHTML = '<h3>Sundial brings you Sunboozy</h3>';
+    L.DomEvent.disableClickPropagation(div);
+    return div;
+};
+titleControl.addTo(map);
+
 var baseLayers = {
     'OSM': OpenStreetMap_Mapnik,
+    'Dark': darkStamenLayer,
     'Carto': basemapCarto,
     'Google': googleTerrain,
 };
@@ -83,8 +93,15 @@ var updateMap = function (variable) {
 
 }
 
-L.easyButton('<i class="material-icons" style="font-size:18px; margin-top: 5px">home</i>', function () {
+L.easyButton('<i class="material-icons" style="font-size:18px; margin-top: 5rc px">home</i>', function () {
     if (markers) {
         map.fitBounds(markers.getBounds());
     }
+}).addTo(map);
+
+var locateControl = L.control.locate({
+    flyTo: true,
+    locateOptions: {
+        enableHighAccuracy: true,
+    },
 }).addTo(map);
